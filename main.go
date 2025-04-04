@@ -1,8 +1,12 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"matrix_example/calculator"
 	"matrix_example/matrix"
+	"os"
+	"strings"
 )
 
 func main() {
@@ -53,4 +57,26 @@ func main() {
 		}
 		fmt.Println()
 	}
+
+	reader := bufio.NewReader(os.Stdin)
+
+	for {
+		fmt.Print("Введите выражение (или 'exit' для выхода): ")
+		expr, _ := reader.ReadString('\n')
+		expr = strings.TrimSpace(expr)
+
+		if expr == "exit" {
+			break
+		}
+
+		result, err := calculator.Calculate(expr)
+		if err != nil {
+			fmt.Println("Ошибка:", err)
+			continue
+		}
+
+		fmt.Printf("Результат: %v\n", result)
+	}
+
+	fmt.Println("Калькулятор завершил работу")
 }
