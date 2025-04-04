@@ -1,0 +1,9 @@
+go test -v ./matrix/
+
+go test -v ./matrix/ -run TestNewMatrix
+
+go test -bench=. ./matrix/
+
+go test -cover ./matrix/
+
+go test -coverprofile=coverage.out ./matrix/
